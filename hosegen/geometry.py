@@ -1199,7 +1199,8 @@ def create_wedgemap_from_block(molblock):
     bonds = 0
     skip = False
     wedgemap = {}
-    for line in molblock:
+    lines = molblock.readlines()
+    for line in lines:
         count += 1
         if (
             skip
@@ -1218,9 +1219,8 @@ def create_wedgemap_from_block(molblock):
 
 
 def create_wedgemap(molfile):
-    file1 = open(molfile, "r")
-    lines = file1.readlines()
-    return create_wedgemap_from_block(lines)
+    file = open(molfile, "r")
+    return create_wedgemap_from_block(file)
 
 
 def makeUpDownBonds(container, wedgemap):
